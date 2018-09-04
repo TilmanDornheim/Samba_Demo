@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import butterknife.ButterKnife
+import com.example.tilman.samba_demo.mvp.base.BaseContract.BaseView
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment(), BaseView {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -29,6 +31,12 @@ abstract class BaseFragment : Fragment() {
 
 
     abstract fun getContentView(): Int
+
+    override fun showToast(text: String) {
+
+        Toast.makeText(activity,text,Toast.LENGTH_SHORT).show()
+
+    }
 
 
 }

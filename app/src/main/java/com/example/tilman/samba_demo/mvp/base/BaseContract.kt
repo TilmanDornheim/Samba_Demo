@@ -4,6 +4,8 @@ interface BaseContract{
 
     interface BaseView{
 
+        fun showToast(text: String)
+
 
     }
 

@@ -8,6 +8,7 @@ interface HomeContract {
     interface View {
 
 
+
     }
 
     interface Presenter : BasePresenter {
