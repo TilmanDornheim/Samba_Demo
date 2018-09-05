@@ -7,11 +7,26 @@ class MainActivityPresenter @Inject constructor(private val view: MainActivityCo
 
 
 
+    override fun navOptionClicked(option: BottomNavOptions) {
+
+        when(option){
+
+            BottomNavOptions.CALENDAR -> view.showFragment(BottomNavOptions.CALENDAR)
+
+            BottomNavOptions.PROFILE -> view.showFragment(BottomNavOptions.PROFILE)
+
+            BottomNavOptions.MAP -> view.showFragment(BottomNavOptions.MAP)
+
+
+        }
+
+
+    }
 
 
     override fun onAttach() {
 
-        view.showFragment(BottomNavOptions.MAP)
+        view.showFragment(BottomNavOptions.CALENDAR)
 
     }
 

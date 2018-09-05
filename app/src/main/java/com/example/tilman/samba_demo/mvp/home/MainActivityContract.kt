@@ -15,8 +15,7 @@ interface MainActivityContract {
 
     interface Presenter :BasePresenter {
 
-
-
+        fun navOptionClicked(option: BottomNavOptions)
 
     }
 
