@@ -11,6 +11,22 @@ import com.example.tilman.samba_demo.mvp.home.MainActivity
 
 class Samba : Application(){
 
+    init {
+        instance = this
+    }
+
+    companion object {
+
+        private var instance: Samba? = null
+
+        fun getApplication(): Samba{
+
+            return instance!!
+
+        }
+
+    }
+
 
     val appComponent: AppComponent by lazy {
 
