@@ -1,4 +1,4 @@
-package com.example.tilman.samba_demo.di
+package com.example.tilman.samba_demo.di.modules
 
 import android.app.Application
 import android.support.v4.app.FragmentManager
