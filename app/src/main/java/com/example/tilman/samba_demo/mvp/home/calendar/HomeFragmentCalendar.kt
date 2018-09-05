@@ -1,9 +1,8 @@
 package com.example.tilman.samba_demo.mvp.home
 
-import android.support.v4.app.Fragment
 import com.example.tilman.samba_demo.mvp.base.BaseFragment
 
-class HomeFragmentCalendar : BaseFragment(), HomeContract.View{
+class HomeFragmentCalendar : BaseFragment(){
 
 
 
