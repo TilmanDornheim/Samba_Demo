@@ -6,7 +6,10 @@ import com.example.tilman.samba_demo.di.components.AppComponent
 import com.example.tilman.samba_demo.di.modules.AppModule
 
 import com.example.tilman.samba_demo.di.components.DaggerAppComponent
+import com.example.tilman.samba_demo.di.components.NavigationFragmentComponent
 import com.example.tilman.samba_demo.di.modules.ActivityModule
+import com.example.tilman.samba_demo.di.modules.NavigationFragmentModule
+import com.example.tilman.samba_demo.mvp.base.BaseFragment
 import com.example.tilman.samba_demo.mvp.home.MainActivity
 
 class Samba : Application(){
@@ -38,6 +41,8 @@ class Samba : Application(){
 
     var activityComponent: ActivityComponent? = null
 
+    var navigationFragmentComponent: NavigationFragmentComponent? = null
+
 
 
     override fun onCreate() {
@@ -61,6 +66,21 @@ class Samba : Application(){
     fun releaseActivityComponent(){
 
         activityComponent = null
+
+    }
+
+    fun createNavigationFragmentComponent(fragment: BaseFragment): NavigationFragmentComponent{
+
+        navigationFragmentComponent = appComponent.plus(NavigationFragmentModule(fragment))
+
+        return navigationFragmentComponent as NavigationFragmentComponent
+
+    }
+
+    fun releaseNavigationFragmentComponent(){
+
+
+        navigationFragmentComponent = null
 
     }
 

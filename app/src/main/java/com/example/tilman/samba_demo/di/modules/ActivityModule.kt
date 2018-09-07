@@ -41,7 +41,7 @@ class ActivityModule(private val activity: MainActivity){
     @ActivityScope
     fun provideCalendarFragment(): HomeFragmentCalendar{
 
-        return HomeFragmentCalendar()
+        return HomeFragmentCalendar.newInstance()
 
     }
 
@@ -49,7 +49,7 @@ class ActivityModule(private val activity: MainActivity){
     @ActivityScope
     fun provideProfileFragment(): HomeFragmentProfile {
 
-        return HomeFragmentProfile()
+        return HomeFragmentProfile.newInstance()
 
     }
 
@@ -57,7 +57,7 @@ class ActivityModule(private val activity: MainActivity){
     @ActivityScope
     fun provideMapFragment(): HomeFragmentMap {
 
-        return HomeFragmentMap()
+        return HomeFragmentMap.newInstance()
 
     }
 
