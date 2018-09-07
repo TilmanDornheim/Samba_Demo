@@ -51,7 +51,7 @@ class HomeFragmentProfile : BaseFragment(), ProfileContract.ProfileView {
 
     override fun reselected() {
 
-        Log.d("BTM_NAV_BAR", "Profile Reselected")
+
 
     }
 

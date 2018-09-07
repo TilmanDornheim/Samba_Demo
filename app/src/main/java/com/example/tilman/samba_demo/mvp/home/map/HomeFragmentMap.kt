@@ -53,7 +53,7 @@ class HomeFragmentMap : BaseFragment(), MapContract.MapView {
 
     override fun reselected() {
 
-        Log.d("BTM_NAV_BAR", "Map Reselected")
+
 
     }
 

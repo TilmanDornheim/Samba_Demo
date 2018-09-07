@@ -1,5 +1,6 @@
 package com.example.tilman.samba_demo.di.modules
 
+import com.example.tilman.samba_demo.data.repos.PartyRepository
 import com.example.tilman.samba_demo.di.scopes.NavigationFragmentScope
 import com.example.tilman.samba_demo.mvp.base.BaseFragment
 import com.example.tilman.samba_demo.mvp.home.calendar.CalendarContract
@@ -23,29 +24,29 @@ class NavigationFragmentModule(private val fragment: BaseFragment){
 
     @NavigationFragmentScope
     @Provides
-    fun provideCalendarPresenter(fragment: BaseFragment): CalendarContract.CalendarPresenter {
+    fun provideCalendarPresenter(fragment: BaseFragment, partyRepository: PartyRepository): CalendarContract.CalendarPresenter {
 
 
-        return CalendarPresenterImpl(fragment as CalendarContract.CalendarView)
+        return CalendarPresenterImpl(fragment as CalendarContract.CalendarView, partyRepository)
 
     }
 
 
     @NavigationFragmentScope
     @Provides
-    fun provideProfilePresenter(fragment: BaseFragment): ProfileContract.ProfilePresenter{
+    fun provideProfilePresenter(fragment: BaseFragment, partyRepository: PartyRepository): ProfileContract.ProfilePresenter{
 
 
-        return ProfilePresenterImpl(fragment as ProfileContract.ProfileView)
+        return ProfilePresenterImpl(fragment as ProfileContract.ProfileView, partyRepository)
 
     }
 
     @NavigationFragmentScope
     @Provides
-    fun provideMapPresenter(fragment: BaseFragment): MapContract.MapPresenter{
+    fun provideMapPresenter(fragment: BaseFragment, partyRepository: PartyRepository): MapContract.MapPresenter{
 
 
-        return MapPresenterImpl(fragment as MapContract.MapView)
+        return MapPresenterImpl(fragment as MapContract.MapView, partyRepository)
 
     }
 

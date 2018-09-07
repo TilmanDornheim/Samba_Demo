@@ -3,4 +3,5 @@
     <string name="btm_nav_bar_cal">Calendar</string>
     <string name="btm_nav_bar_profile">Profile</string>
     <string name="btm_nav_bar_map">Map</string>
+    <string name="api_base_url">http://myapiname.com</string>
 </resources>

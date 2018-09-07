@@ -59,7 +59,7 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView{
 
     override fun reselected() {
 
-        Log.d("BTM_NAV_BAR", "Calendar Reselected")
+
 
     }
 

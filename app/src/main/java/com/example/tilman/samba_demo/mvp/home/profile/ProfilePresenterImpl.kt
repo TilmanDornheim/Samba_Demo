@@ -1,11 +1,13 @@
 package com.example.tilman.samba_demo.mvp.home.profile
 
-class ProfilePresenterImpl(private var profileView: ProfileContract.ProfileView?): ProfileContract.ProfilePresenter{
+import com.example.tilman.samba_demo.data.repos.PartyRepository
+
+class ProfilePresenterImpl(private var profileView: ProfileContract.ProfileView?, private val partyRepository: PartyRepository): ProfileContract.ProfilePresenter{
 
 
     override fun onAttach() {
 
-        profileView?.showToast("Profile Presenter attached")
+
 
     }
 
