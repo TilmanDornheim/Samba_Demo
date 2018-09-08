@@ -1,5 +1,6 @@
 package com.example.tilman.samba_demo.mvp.home.calendar
 
+import android.util.Log
 import com.example.tilman.samba_demo.data.models.Party
 import com.example.tilman.samba_demo.data.repos.PartyRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,22 +11,39 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
 
 
 
+    private var partyList = ArrayList<Party>()
+
+
 
 
     override fun onAttach() {
 
+        Log.d("Calendar Frag", "Presenter onAttach called")
+
+        partyList.clear()
+
+        loadParties()
+
+    }
+
+    fun loadParties() {
 
         partyRepository.getParties()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handlePartyResponse, this::handleError)
-
     }
 
 
     fun handlePartyResponse(parties: ArrayList<Party>){
 
-        calendarView?.showToast("Received Parties")
+        Log.d("Calendar Frag", "# of received Parties = " + parties.size)
+
+        partyList = parties
+
+        calendarView?.onPartyListUpdated()
+
+
 
 
     }
@@ -36,9 +54,17 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
 
     }
 
+    override fun showParties(): ArrayList<Party> {
+
+        return partyList
+
+    }
+
     override fun onDetach() {
 
         calendarView = null
+
+        Log.d("Calendar Frag","Presenter onDetach called")
 
     }
 

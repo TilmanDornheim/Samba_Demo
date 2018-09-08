@@ -35,13 +35,15 @@ class MainActivity : AppCompatActivity(), View {
     lateinit var presenter: MainActivityContract.Presenter
 
     @Inject
-    lateinit var calendarFragment: HomeFragmentCalendar
+    lateinit var calendarFrag: HomeFragmentCalendar
 
     @Inject
-    lateinit var profileFragment: HomeFragmentProfile
+    lateinit var profileFrag: HomeFragmentProfile
 
     @Inject
-    lateinit var mapFragment: HomeFragmentMap
+    lateinit var mapFrag: HomeFragmentMap
+
+
 
 
     val app = Samba.getApplication()
@@ -158,13 +160,14 @@ class MainActivity : AppCompatActivity(), View {
 
         var transaction: FragmentTransaction = fragmentManager.beginTransaction()
 
+
         when (option) {
 
-            BottomNavOptions.CALENDAR -> transaction.replace(R.id.main_activity_root_view, calendarFragment,"CalendarFragment")
+            BottomNavOptions.CALENDAR -> transaction.replace(R.id.main_activity_root_view, calendarFrag,"CalendarFragment")
 
-            BottomNavOptions.PROFILE -> transaction.replace(R.id.main_activity_root_view, profileFragment,"ProfileFragment")
+            BottomNavOptions.PROFILE -> transaction.replace(R.id.main_activity_root_view, profileFrag,"ProfileFragment")
 
-            BottomNavOptions.MAP -> transaction.replace(R.id.main_activity_root_view, mapFragment,"MapFragment")
+            BottomNavOptions.MAP -> transaction.replace(R.id.main_activity_root_view, mapFrag,"MapFragment")
 
         }
 

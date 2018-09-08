@@ -1,5 +1,6 @@
 package com.example.tilman.samba_demo.mvp.base
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +12,7 @@ import butterknife.ButterKnife
 import com.example.tilman.samba_demo.mvp.base.BaseContract.BaseView
 
 abstract class BaseFragment : Fragment(), BaseView {
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,6 +39,7 @@ abstract class BaseFragment : Fragment(), BaseView {
         Toast.makeText(activity,text,Toast.LENGTH_SHORT).show()
 
     }
+
 
 
 }

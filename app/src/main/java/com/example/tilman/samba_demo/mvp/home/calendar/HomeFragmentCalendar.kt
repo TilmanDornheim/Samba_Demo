@@ -1,11 +1,14 @@
 package com.example.tilman.samba_demo.mvp.home.calendar
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.view.View
 import com.example.tilman.samba_demo.R
 import com.example.tilman.samba_demo.Samba
 import com.example.tilman.samba_demo.mvp.base.BaseFragment
 import com.example.tilman.samba_demo.mvp.home.calendar.CalendarContract.CalendarPresenter
+import kotlinx.android.synthetic.main.fragment_home_calendar.*
 import javax.inject.Inject
 
 class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView{
@@ -13,6 +16,12 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView{
 
     @Inject
     lateinit var presenter: CalendarPresenter
+
+    @Inject
+    lateinit var adapter: CalendarRecyclerAdapter
+
+    @Inject
+    lateinit var layoutManager: LinearLayoutManager
 
     val app = Samba.getApplication()
 
@@ -39,7 +48,18 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView{
 
         app.navigationFragmentComponent?.inject(this)
 
+
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        super.onViewCreated(view, savedInstanceState)
+
         presenter.onAttach()
+
+        calendar_recyclerview.layoutManager = layoutManager
+        calendar_recyclerview.adapter = adapter
 
 
     }
@@ -53,6 +73,12 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView{
         presenter.onDetach()
 
         app.releaseNavigationFragmentComponent()
+
+    }
+
+    override fun onPartyListUpdated() {
+
+        adapter.notifyDataSetChanged()
 
     }
 

@@ -1,10 +1,12 @@
 package com.example.tilman.samba_demo.di.modules
 
+import android.support.v7.widget.LinearLayoutManager
 import com.example.tilman.samba_demo.data.repos.PartyRepository
 import com.example.tilman.samba_demo.di.scopes.NavigationFragmentScope
 import com.example.tilman.samba_demo.mvp.base.BaseFragment
 import com.example.tilman.samba_demo.mvp.home.calendar.CalendarContract
 import com.example.tilman.samba_demo.mvp.home.calendar.CalendarPresenterImpl
+import com.example.tilman.samba_demo.mvp.home.calendar.CalendarRecyclerAdapter
 import com.example.tilman.samba_demo.mvp.home.calendar.HomeFragmentCalendar
 import com.example.tilman.samba_demo.mvp.home.map.MapContract
 import com.example.tilman.samba_demo.mvp.home.map.MapPresenterImpl
@@ -47,6 +49,22 @@ class NavigationFragmentModule(private val fragment: BaseFragment){
 
 
         return MapPresenterImpl(fragment as MapContract.MapView, partyRepository)
+
+    }
+
+    @NavigationFragmentScope
+    @Provides
+    fun provideLinearLayoutManager(): LinearLayoutManager{
+
+        return LinearLayoutManager(fragment.context)
+
+    }
+
+    @NavigationFragmentScope
+    @Provides
+    fun provideCalendarRecyclerAdapter(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapter{
+
+        return CalendarRecyclerAdapter(presenter)
 
     }
 
