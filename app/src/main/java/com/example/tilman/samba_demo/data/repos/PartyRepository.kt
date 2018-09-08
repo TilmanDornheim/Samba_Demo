@@ -39,7 +39,7 @@ constructor(private val mockApiService: MockApi){
         mockPartyList.add(Party(2, "Kanye West @ Complex"))
         mockPartyList.add(Party(3,"Late-night Get together"))
         mockPartyList.add(Party(4, "Michael's Party"))
-        mockPartyList.add(Party(5, "Tilman's Party"))
+        mockPartyList.add(Party(5, "Antii Release Party"))
         mockPartyList.add(Party(6, "Maybritt's Birthday"))
 
     }

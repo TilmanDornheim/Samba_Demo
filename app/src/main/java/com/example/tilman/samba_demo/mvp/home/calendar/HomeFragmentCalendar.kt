@@ -1,6 +1,7 @@
 package com.example.tilman.samba_demo.mvp.home.calendar
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
@@ -24,6 +25,8 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView{
     lateinit var layoutManager: LinearLayoutManager
 
     val app = Samba.getApplication()
+
+
 
 
     companion object {
@@ -62,6 +65,7 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView{
         calendar_recyclerview.adapter = adapter
 
 
+
     }
 
 
@@ -87,6 +91,7 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView{
 
 
 
+
     }
 
     override fun getContentView(): Int {
@@ -95,5 +100,23 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView{
 
     }
 
+
+    override fun onPause() {
+
+        super.onPause()
+
+
+
+    }
+
+    override fun onResume() {
+
+        super.onResume()
+
+
+
+
+
+    }
 
 }
