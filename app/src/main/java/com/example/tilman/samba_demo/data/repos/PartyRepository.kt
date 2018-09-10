@@ -4,6 +4,7 @@ import com.example.tilman.samba_demo.data.api.MockApi
 import com.example.tilman.samba_demo.data.models.Party
 import io.reactivex.Observable
 import io.reactivex.Single
+import java.util.*
 import javax.inject.Inject
 
 class PartyRepository
@@ -35,12 +36,25 @@ constructor(private val mockApiService: MockApi){
 
         mockPartyList.clear()
 
-        mockPartyList.add(Party(1, "Tommaso's Party"))
-        mockPartyList.add(Party(2, "Kanye West @ Complex"))
-        mockPartyList.add(Party(3,"Late-night Get together"))
-        mockPartyList.add(Party(4, "Michael's Party"))
-        mockPartyList.add(Party(5, "Antii Release Party"))
-        mockPartyList.add(Party(6, "Maybritt's Birthday"))
+        val calendar = Calendar.getInstance()
+
+        val dateNow = calendar.time
+
+        calendar.add(Calendar.DATE, 3)
+
+        val dateThisWeek = calendar.time
+
+        calendar.add(Calendar.DATE,4)
+
+        val dateNextWeek = calendar.time
+
+
+        mockPartyList.add(Party(1, "Tommaso's Party", dateNow))
+        mockPartyList.add(Party(2, "Kanye West @ Complex", dateNow))
+        mockPartyList.add(Party(3,"Late-night Get together", dateNextWeek))
+        mockPartyList.add(Party(4, "Michael's Party", dateThisWeek))
+        mockPartyList.add(Party(5, "Antii Release Party", dateThisWeek))
+        mockPartyList.add(Party(6, "Maybritt's Birthday", dateNextWeek))
 
     }
 

@@ -1,22 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/home_bg"
+    android:orientation="vertical"
+    android:scrollbars="vertical"
     >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
-    <android.support.v7.widget.RecyclerView
+
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/home_cal_today"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:textSize="30sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+        />
+
+
+
+
+        <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="50dp"
-        android:id="@+id/calendar_recyclerview"
+        android:layout_height="wrap_content"
+        android:id="@+id/calendar_recyclerview_today"
 
         >
 
-    </android.support.v7.widget.RecyclerView>
-</android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.RecyclerView>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/home_cal_thisWeek"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:textSize="30sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:id="@+id/calendar_recyclerview_week"
+            ></android.support.v7.widget.RecyclerView>
+
+
+        </LinearLayout>
+
+
+
+
+
+</ScrollView>
 

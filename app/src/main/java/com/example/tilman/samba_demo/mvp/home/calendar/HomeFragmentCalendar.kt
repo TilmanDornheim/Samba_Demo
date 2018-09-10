@@ -1,9 +1,7 @@
 package com.example.tilman.samba_demo.mvp.home.calendar
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
 import com.example.tilman.samba_demo.R
 import com.example.tilman.samba_demo.Samba
@@ -11,6 +9,7 @@ import com.example.tilman.samba_demo.mvp.base.BaseFragment
 import com.example.tilman.samba_demo.mvp.home.calendar.CalendarContract.CalendarPresenter
 import kotlinx.android.synthetic.main.fragment_home_calendar.*
 import javax.inject.Inject
+import javax.inject.Named
 
 class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView{
 
@@ -19,10 +18,16 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView{
     lateinit var presenter: CalendarPresenter
 
     @Inject
-    lateinit var adapter: CalendarRecyclerAdapter
+    lateinit var adapterToday: CalendarRecyclerAdapterToday
 
     @Inject
-    lateinit var layoutManager: LinearLayoutManager
+    lateinit var adapterWeek: CalendarRecyclerAdapterWeek
+
+    @field:[Inject Named("LayoutManagerDay")]
+    lateinit var layoutManagerDay: LinearLayoutManager
+
+    @field:[Inject Named("LayoutManagerWeek")]
+    lateinit var layoutManagerWeek: LinearLayoutManager
 
     val app = Samba.getApplication()
 
@@ -61,8 +66,14 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView{
 
         presenter.onAttach()
 
-        calendar_recyclerview.layoutManager = layoutManager
-        calendar_recyclerview.adapter = adapter
+        calendar_recyclerview_today.layoutManager = layoutManagerDay
+        calendar_recyclerview_today.adapter = adapterToday
+        calendar_recyclerview_today.isNestedScrollingEnabled = false
+
+        calendar_recyclerview_week.layoutManager = layoutManagerWeek
+        calendar_recyclerview_week.adapter = adapterWeek
+        calendar_recyclerview_week.isNestedScrollingEnabled = false
+
 
 
 
@@ -82,7 +93,7 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView{
 
     override fun onPartyListUpdated() {
 
-        adapter.notifyDataSetChanged()
+        adapterToday.notifyDataSetChanged()
 
     }
 

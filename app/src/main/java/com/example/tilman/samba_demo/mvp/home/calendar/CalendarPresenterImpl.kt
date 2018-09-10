@@ -5,13 +5,21 @@ import com.example.tilman.samba_demo.data.models.Party
 import com.example.tilman.samba_demo.data.repos.PartyRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
-class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarView?, private val partyRepository: PartyRepository): CalendarContract.CalendarPresenter{
+class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarView?
+                            ,private val partyRepository: PartyRepository
+                            ,private val dateFormat: SimpleDateFormat): CalendarContract.CalendarPresenter{
 
 
 
     private var partyList = ArrayList<Party>()
+
+
+
 
 
 
@@ -57,6 +65,69 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
     override fun showParties(): ArrayList<Party> {
 
         return partyList
+
+    }
+
+    override fun showPartiesToday(): ArrayList<Party> {
+
+        val calNow = Calendar.getInstance()
+
+        val dayNow = calNow.get(Calendar.DAY_OF_YEAR)
+
+        var dayList = ArrayList<Party>()
+
+        partyList.forEach{
+
+
+            val cal = Calendar.getInstance()
+
+            cal.time = it.date
+
+            val partyDay = cal.get(Calendar.DAY_OF_YEAR)
+
+            if(dayNow == partyDay){
+
+
+                dayList.add(it)
+
+            }
+
+        }
+
+
+        return dayList
+
+
+    }
+
+    override fun showPartiesWeek(): ArrayList<Party> {
+
+        val calNow = Calendar.getInstance()
+
+        val weekNow = calNow.get(Calendar.WEEK_OF_YEAR)
+
+        var weekList = ArrayList<Party>()
+
+        partyList.forEach{
+
+
+            val cal = Calendar.getInstance()
+
+            cal.time = it.date
+
+            val partyWeek = cal.get(Calendar.WEEK_OF_YEAR)
+
+            if(weekNow == partyWeek && !showPartiesToday().contains(it)){
+
+                weekList.add(it)
+
+            }
+
+
+        }
+
+
+        return weekList
 
     }
 

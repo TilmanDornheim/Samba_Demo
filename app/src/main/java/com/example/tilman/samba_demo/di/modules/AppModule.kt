@@ -1,5 +1,6 @@
 package com.example.tilman.samba_demo.di.modules
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.support.v4.app.FragmentManager
 import com.example.tilman.samba_demo.R
@@ -13,6 +14,9 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Singleton
 
 @Module
@@ -71,6 +75,14 @@ class AppModule(private val app: Application){
 
     }
 
+    @SuppressLint("SimpleDateFormat")
+    @Singleton
+    @Provides
+    fun provideDateFormat(): SimpleDateFormat{
+
+        return SimpleDateFormat("yyyy-MM-dd")
+
+    }
 
 
 
