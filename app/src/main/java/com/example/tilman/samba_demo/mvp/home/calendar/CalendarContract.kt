@@ -25,6 +25,8 @@ interface CalendarContract {
 
         fun showPartiesWeek(): ArrayList<Party>
 
+        fun showPartiesLater(): ArrayList<Party>
+
     }
 
 

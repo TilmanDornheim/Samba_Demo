@@ -11,22 +11,14 @@ import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarView?
-                            ,private val partyRepository: PartyRepository
-                            ,private val dateFormat: SimpleDateFormat): CalendarContract.CalendarPresenter{
-
+                            , private val partyRepository: PartyRepository
+                            , private val dateFormat: SimpleDateFormat) : CalendarContract.CalendarPresenter {
 
 
     private var partyList = ArrayList<Party>()
 
 
-
-
-
-
-
     override fun onAttach() {
-
-        Log.d("Calendar Frag", "Presenter onAttach called")
 
         partyList.clear()
 
@@ -43,21 +35,16 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
     }
 
 
-    fun handlePartyResponse(parties: ArrayList<Party>){
-
-        Log.d("Calendar Frag", "# of received Parties = " + parties.size)
+    fun handlePartyResponse(parties: ArrayList<Party>) {
 
         partyList = parties
 
         calendarView?.onPartyListUpdated()
 
 
-
-
     }
 
-    fun handleError(throwable: Throwable){
-
+    fun handleError(throwable: Throwable) {
 
 
     }
@@ -76,7 +63,7 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
 
         var dayList = ArrayList<Party>()
 
-        partyList.forEach{
+        partyList.forEach {
 
 
             val cal = Calendar.getInstance()
@@ -85,7 +72,7 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
 
             val partyDay = cal.get(Calendar.DAY_OF_YEAR)
 
-            if(dayNow == partyDay){
+            if (dayNow == partyDay) {
 
 
                 dayList.add(it)
@@ -108,7 +95,7 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
 
         var weekList = ArrayList<Party>()
 
-        partyList.forEach{
+        partyList.forEach {
 
 
             val cal = Calendar.getInstance()
@@ -117,7 +104,7 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
 
             val partyWeek = cal.get(Calendar.WEEK_OF_YEAR)
 
-            if(weekNow == partyWeek && !showPartiesToday().contains(it)){
+            if (weekNow == partyWeek && !showPartiesToday().contains(it)) {
 
                 weekList.add(it)
 
@@ -131,17 +118,39 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
 
     }
 
+
+    override fun showPartiesLater(): ArrayList<Party> {
+
+        val calNow = Calendar.getInstance()
+
+        val laterList = ArrayList<Party>()
+
+        partyList.forEach {
+
+
+            val cal = Calendar.getInstance()
+
+            cal.time = it.date
+
+            if (!showPartiesToday().contains(it) && !showPartiesWeek().contains(it) && cal.time.after(calNow.time)) {
+
+
+                laterList.add(it)
+
+            }
+
+        }
+
+        return laterList
+
+    }
+
     override fun onDetach() {
 
         calendarView = null
 
-        Log.d("Calendar Frag","Presenter onDetach called")
 
     }
-
-
-
-
 
 
 }

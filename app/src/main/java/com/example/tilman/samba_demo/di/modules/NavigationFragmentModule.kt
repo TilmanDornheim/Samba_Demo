@@ -4,10 +4,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.example.tilman.samba_demo.data.repos.PartyRepository
 import com.example.tilman.samba_demo.di.scopes.NavigationFragmentScope
 import com.example.tilman.samba_demo.mvp.base.BaseFragment
-import com.example.tilman.samba_demo.mvp.home.calendar.CalendarContract
-import com.example.tilman.samba_demo.mvp.home.calendar.CalendarPresenterImpl
-import com.example.tilman.samba_demo.mvp.home.calendar.CalendarRecyclerAdapterToday
-import com.example.tilman.samba_demo.mvp.home.calendar.CalendarRecyclerAdapterWeek
+import com.example.tilman.samba_demo.mvp.home.calendar.*
 import com.example.tilman.samba_demo.mvp.home.map.MapContract
 import com.example.tilman.samba_demo.mvp.home.map.MapPresenterImpl
 import com.example.tilman.samba_demo.mvp.home.profile.ProfileContract
@@ -75,6 +72,15 @@ class NavigationFragmentModule(private val fragment: BaseFragment){
 
     @NavigationFragmentScope
     @Provides
+    @Named("LayoutManagerLater")
+    fun provideLinearLayoutManagerLater(): LinearLayoutManager{
+
+        return LinearLayoutManager(fragment.context)
+
+    }
+
+    @NavigationFragmentScope
+    @Provides
     fun provideCalendarRecyclerAdapterToday(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterToday{
 
         return CalendarRecyclerAdapterToday(presenter)
@@ -86,6 +92,14 @@ class NavigationFragmentModule(private val fragment: BaseFragment){
     fun provideCalendarRecyclerAdapterWeek(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterWeek{
 
         return CalendarRecyclerAdapterWeek(presenter)
+
+    }
+
+    @NavigationFragmentScope
+    @Provides
+    fun provideCalendarRecyclerAdapterLater(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterLater{
+
+        return CalendarRecyclerAdapterLater(presenter)
 
     }
 
