@@ -7,4 +7,7 @@
     <string name="home_cal_today">Today</string>
     <string name="home_cal_thisWeek">This Week</string>
     <string name="home_cal_later">Later</string>
+
+    <string name="maps_api_key">AIzaSyCApjQhuTHzyRf8HZmXPL893wLIZY_drkQ</string>
+
 </resources>

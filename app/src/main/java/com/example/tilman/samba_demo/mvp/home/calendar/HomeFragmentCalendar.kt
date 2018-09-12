@@ -98,9 +98,28 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView {
 
         val animExpand = AnimationUtils.loadAnimation(context,R.anim.calendar_expand_arrow_anim)
 
-        //Collapse & Expand logic for recyclerviews
+        //Collapse & Expand logic for recyclerviews and arrows
 
         //Today
+
+        when(todayRecyclerShowing){
+
+            true -> {
+
+                calendar_recyclerview_today.visibility = View.VISIBLE
+
+                calendar_collapse_arrow_today.startAnimation(animExpand)
+
+            }
+
+            false -> {
+
+                calendar_recyclerview_today.visibility = View.GONE
+
+                calendar_collapse_arrow_today.startAnimation(animCollapse)
+
+            }
+        }
 
         calendar_collapse_arrow_today.setOnClickListener {
 
@@ -135,6 +154,26 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView {
 
         //Week
 
+        when(weekRecyclerShowing){
+
+            true -> {
+
+                calendar_recyclerview_week.visibility = View.VISIBLE
+
+                calendar_collapse_arrow_week.startAnimation(animExpand)
+
+            }
+
+            false -> {
+
+                calendar_recyclerview_week.visibility = View.GONE
+
+                calendar_collapse_arrow_week.startAnimation(animCollapse)
+
+            }
+
+        }
+
         calendar_collapse_arrow_week.setOnClickListener {
 
             when(weekRecyclerShowing){
@@ -166,6 +205,23 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView {
         }
 
         //Later
+
+        when(laterRecyclerShowing){
+
+            true -> {
+
+                calendar_recyclerview_later.visibility = View.VISIBLE
+                calendar_collapse_arrow_later.startAnimation(animExpand)
+            }
+
+            false -> {
+
+                calendar_recyclerview_later.visibility = View.GONE
+                calendar_collapse_arrow_later.startAnimation(animCollapse)
+
+            }
+
+        }
 
         calendar_collapse_arrow_later.setOnClickListener {
 

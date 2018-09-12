@@ -2,10 +2,12 @@ package com.example.tilman.samba_demo.di.modules
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.location.Criteria
 import android.support.v4.app.FragmentManager
 import com.example.tilman.samba_demo.R
 import com.example.tilman.samba_demo.data.api.MockApi
 import com.example.tilman.samba_demo.data.repos.PartyRepository
+import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -81,6 +83,15 @@ class AppModule(private val app: Application){
     fun provideDateFormat(): SimpleDateFormat{
 
         return SimpleDateFormat("yyyy-MM-dd")
+
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideCriteria(): Criteria{
+
+        return Criteria()
 
     }
 
