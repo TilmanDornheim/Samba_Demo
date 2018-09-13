@@ -147,6 +147,8 @@ class HomeFragmentMap : BaseFragment(), MapContract.MapView, OnMapReadyCallback,
 
             googleMap?.isMyLocationEnabled = true
 
+            googleMap?.uiSettings?.isZoomControlsEnabled = true
+
             googleMap?.uiSettings?.isMyLocationButtonEnabled = true
 
             val locationManager = activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
