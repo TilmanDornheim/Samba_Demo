@@ -1,17 +1,17 @@
 package com.example.tilman.samba_demo.mvp.home.calendar
 
-import android.opengl.Visibility
+import android.graphics.Color
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import com.example.tilman.samba_demo.R
 import com.example.tilman.samba_demo.Samba
 import com.example.tilman.samba_demo.mvp.base.BaseFragment
 import com.example.tilman.samba_demo.mvp.home.calendar.CalendarContract.CalendarPresenter
 import kotlinx.android.synthetic.main.fragment_home_calendar.*
+import kotlinx.android.synthetic.main.fragment_home_calendar_content.*
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -250,6 +250,14 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView {
             }
 
         }
+
+
+        //Tab Layout
+
+        calendar_toolbar_tablayout.addTab(calendar_toolbar_tablayout.newTab().setText("Attending"))
+        calendar_toolbar_tablayout.addTab(calendar_toolbar_tablayout.newTab().setText("Hosting"))
+
+        calendar_toolbar_tablayout.setTabTextColors(ContextCompat.getColor(context!!, R.color.tab_layout_not_selected), ContextCompat.getColor(context!!, R.color.white))
 
 
     }
