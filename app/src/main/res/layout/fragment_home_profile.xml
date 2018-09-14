@@ -1,30 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.design.widget.CoordinatorLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/home_bg"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="PROFILE"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-</android.support.constraint.ConstraintLayout>
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+
+        >
+
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            android:fitsSystemWindows="true"
+            >
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_gravity="top"
+                android:background="@color/home_accent"
+
+
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|start"
+                    android:layout_marginStart="25dp"
+                    android:text="Profile"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    />
+
+
+            </LinearLayout>
+
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:background="@color/home_accent"
+                app:layout_collapseMode="pin"
+                android:id="@+id/profile_toolbar_toolbar"
+                android:layout_gravity="bottom"
+
+
+
+                >
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <android.support.design.widget.TabLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/profile_toolbar_tablayout"
+                        app:tabTextAppearance="@style/TabLayoutTextStyle"
+                        app:tabMinWidth="100dp"
+                        app:tabMode="scrollable"
+                        app:tabIndicatorColor="@color/white"
+                        app:tabIndicatorHeight="2dp"
+
+
+                        ></android.support.design.widget.TabLayout>
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.Toolbar>
+
+
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/profile_viewpager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+
+
+    </android.support.v4.view.ViewPager>
+
+
+
+
+
+
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>
+
+
 

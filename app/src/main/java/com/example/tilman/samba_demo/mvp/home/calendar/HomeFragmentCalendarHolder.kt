@@ -58,13 +58,13 @@ class HomeFragmentCalendarHolder: BaseFragment(){
 
         //Tab Layout
         calendar_toolbar_tablayout.setTabTextColors(ContextCompat.getColor(context!!, R.color.tab_layout_not_selected), ContextCompat.getColor(context!!, R.color.white))
-
+        calendar_toolbar_tablayout.setupWithViewPager(calendar_viewpager)
 
         //View Pager
 
         calendar_viewpager.adapter = viewPagerAdapter
 
-        calendar_toolbar_tablayout.setupWithViewPager(calendar_viewpager)
+
 
 
     }

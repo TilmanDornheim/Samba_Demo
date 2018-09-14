@@ -7,7 +7,7 @@ import com.example.tilman.samba_demo.mvp.home.MainActivityContract
 import com.example.tilman.samba_demo.mvp.home.MainActivityPresenter
 import com.example.tilman.samba_demo.mvp.home.calendar.HomeFragmentCalendarHolder
 import com.example.tilman.samba_demo.mvp.home.map.HomeFragmentMap
-import com.example.tilman.samba_demo.mvp.home.profile.HomeFragmentProfile
+import com.example.tilman.samba_demo.mvp.home.profile.HomeFragmentProfileHolder
 import dagger.Module
 import dagger.Provides
 
@@ -46,9 +46,9 @@ class ActivityModule(private val activity: MainActivity){
 
     @Provides
     @ActivityScope
-    fun provideProfileFragment(): HomeFragmentProfile {
+    fun provideProfileFragment(): HomeFragmentProfileHolder {
 
-        return HomeFragmentProfile.newInstance()
+        return HomeFragmentProfileHolder.newInstance()
 
     }
 

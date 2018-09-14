@@ -11,7 +11,7 @@ import com.example.tilman.samba_demo.mvp.home.calendar.CalendarContract.Calendar
 import com.example.tilman.samba_demo.mvp.home.calendar.adapters.CalendarRecyclerAdapterAttendingLater
 import com.example.tilman.samba_demo.mvp.home.calendar.adapters.CalendarRecyclerAdapterAttendingToday
 import com.example.tilman.samba_demo.mvp.home.calendar.adapters.CalendarRecyclerAdapterAttendingWeek
-import kotlinx.android.synthetic.main.fragment_home_calendar_content.*
+import kotlinx.android.synthetic.main.fragment_home_calendar_attending.*
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -283,7 +283,7 @@ class HomeFragmentCalendarAttending : BaseFragment(), CalendarContract.CalendarV
 
     override fun getContentView(): Int {
 
-        return R.layout.fragment_home_calendar_content
+        return R.layout.fragment_home_calendar_attending
 
     }
 

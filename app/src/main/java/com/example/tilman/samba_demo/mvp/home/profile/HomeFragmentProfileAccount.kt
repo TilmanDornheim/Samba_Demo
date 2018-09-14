@@ -7,7 +7,7 @@ import com.example.tilman.samba_demo.Samba
 import com.example.tilman.samba_demo.mvp.base.BaseFragment
 import javax.inject.Inject
 
-class HomeFragmentProfile : BaseFragment(), ProfileContract.ProfileView {
+class HomeFragmentProfileAccount : BaseFragment(), ProfileContract.ProfileView {
 
     @Inject lateinit var presenter: ProfileContract.ProfilePresenter
 
@@ -16,9 +16,9 @@ class HomeFragmentProfile : BaseFragment(), ProfileContract.ProfileView {
 
     companion object {
 
-        fun newInstance(): HomeFragmentProfile {
+        fun newInstance(): HomeFragmentProfileAccount {
 
-            val fragment = HomeFragmentProfile()
+            val fragment = HomeFragmentProfileAccount()
 
             //Add arguments as necessary
 
@@ -58,7 +58,7 @@ class HomeFragmentProfile : BaseFragment(), ProfileContract.ProfileView {
 
     override fun getContentView(): Int {
 
-        return R.layout.fragment_home_profile
+        return R.layout.fragment_home_profile_account
 
     }
 

@@ -13,9 +13,9 @@ class CalendarViewPagerAdapter @Inject constructor(fragmentManager: FragmentMana
 
         return when(position){
 
-            1 -> HomeFragmentCalendarAttending.newInstance()
+            0 -> HomeFragmentCalendarAttending.newInstance()
 
-            2 -> HomeFragmentCalendarAttending.newInstance()
+            1 -> HomeFragmentCalendarAttending.newInstance()
 
             else -> HomeFragmentCalendarAttending.newInstance()
 

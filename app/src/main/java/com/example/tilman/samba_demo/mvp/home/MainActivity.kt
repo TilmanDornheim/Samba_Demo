@@ -14,7 +14,7 @@ import com.example.tilman.samba_demo.mvp.home.calendar.CalendarContract
 import com.example.tilman.samba_demo.mvp.home.calendar.HomeFragmentCalendarHolder
 import com.example.tilman.samba_demo.mvp.home.map.HomeFragmentMap
 import com.example.tilman.samba_demo.mvp.home.map.MapContract
-import com.example.tilman.samba_demo.mvp.home.profile.HomeFragmentProfile
+import com.example.tilman.samba_demo.mvp.home.profile.HomeFragmentProfileHolder
 import com.example.tilman.samba_demo.mvp.home.profile.ProfileContract
 import com.example.tilman.samba_demo.utils.BottomNavOptions
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), View {
     lateinit var calendarFrag: HomeFragmentCalendarHolder
 
     @Inject
-    lateinit var profileFrag: HomeFragmentProfile
+    lateinit var profileFrag: HomeFragmentProfileHolder
 
     @Inject
     lateinit var mapFrag: HomeFragmentMap
@@ -93,37 +93,16 @@ class MainActivity : AppCompatActivity(), View {
 
         main_activity_btm_nav_bar.setOnNavigationItemReselectedListener { item: MenuItem ->
 
+            //TODO handle reselection logic
+
             when (item.itemId) {
 
-                R.id.btm_nav_bar_calendar -> {
+                R.id.btm_nav_bar_calendar -> true
 
-                    val calendarFrag: CalendarContract.CalendarView = fragmentManager.findFragmentByTag("CalendarFragment") as CalendarContract.CalendarView
+                R.id.btm_nav_bar_profile -> true
 
-                    calendarFrag.reselected()
+                R.id.btm_nav_bar_map -> true
 
-                    true
-
-                }
-
-                R.id.btm_nav_bar_profile -> {
-
-                    val profileFrag: ProfileContract.ProfileView = fragmentManager.findFragmentByTag("ProfileFragment") as ProfileContract.ProfileView
-
-                    profileFrag.reselected()
-
-                    true
-
-                }
-
-                R.id.btm_nav_bar_map -> {
-
-                    val mapFrag: MapContract.MapView = fragmentManager.findFragmentByTag("MapFragment") as MapContract.MapView
-
-                    mapFrag.reselected()
-
-                    true
-
-                }
 
                 else -> false
 

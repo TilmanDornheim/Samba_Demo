@@ -1,5 +1,6 @@
 package com.example.tilman.samba_demo.di.modules
 
+import android.support.v4.app.FragmentManager
 import android.support.v7.widget.LinearLayoutManager
 import com.example.tilman.samba_demo.data.repos.PartyRepository
 import com.example.tilman.samba_demo.di.scopes.NavigationFragmentScope
@@ -13,6 +14,7 @@ import com.example.tilman.samba_demo.mvp.home.map.MapContract
 import com.example.tilman.samba_demo.mvp.home.map.MapPresenterImpl
 import com.example.tilman.samba_demo.mvp.home.profile.ProfileContract
 import com.example.tilman.samba_demo.mvp.home.profile.ProfilePresenterImpl
+import com.example.tilman.samba_demo.mvp.home.profile.ProfileViewPagerAdapter
 import dagger.Module
 import dagger.Provides
 import java.text.SimpleDateFormat
@@ -116,9 +118,19 @@ class NavigationFragmentModule(private val fragment: BaseFragment){
 
     @NavigationFragmentScope
     @Provides
-    fun provideViewPagerAdapter(fragmentManager: android.support.v4.app.FragmentManager): CalendarViewPagerAdapter {
+    fun provideCalendarViewPagerAdapter(fragmentManager: android.support.v4.app.FragmentManager): CalendarViewPagerAdapter {
 
         return CalendarViewPagerAdapter(fragmentManager)
+
+    }
+
+
+    @NavigationFragmentScope
+    @Provides
+    fun providesProfileViewPagerAdapter(fragmentManager: FragmentManager): ProfileViewPagerAdapter{
+
+
+        return ProfileViewPagerAdapter(fragmentManager)
 
     }
 
