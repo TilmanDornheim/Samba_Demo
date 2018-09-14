@@ -8,7 +8,7 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="btm_nav_bar_not_checked">#9e9e9e</color>
-    <color name="tab_layout_not_selected">#E0E0E0</color>
+    <color name="tab_layout_not_selected">#99FFFFFF</color>
     <color name="home_accent">#FA8334</color>
 
 </resources>

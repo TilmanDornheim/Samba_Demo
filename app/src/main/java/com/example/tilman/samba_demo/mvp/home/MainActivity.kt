@@ -1,9 +1,6 @@
 package com.example.tilman.samba_demo.mvp.home
 
-import android.app.Application
 import android.os.Bundle
-import android.support.design.internal.BottomNavigationMenuView
-import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
@@ -12,10 +9,9 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.example.tilman.samba_demo.R
 import com.example.tilman.samba_demo.Samba
-import com.example.tilman.samba_demo.di.modules.ActivityModule
 import com.example.tilman.samba_demo.mvp.home.MainActivityContract.View
 import com.example.tilman.samba_demo.mvp.home.calendar.CalendarContract
-import com.example.tilman.samba_demo.mvp.home.calendar.HomeFragmentCalendar
+import com.example.tilman.samba_demo.mvp.home.calendar.HomeFragmentCalendarHolder
 import com.example.tilman.samba_demo.mvp.home.map.HomeFragmentMap
 import com.example.tilman.samba_demo.mvp.home.map.MapContract
 import com.example.tilman.samba_demo.mvp.home.profile.HomeFragmentProfile
@@ -35,7 +31,7 @@ class MainActivity : AppCompatActivity(), View {
     lateinit var presenter: MainActivityContract.Presenter
 
     @Inject
-    lateinit var calendarFrag: HomeFragmentCalendar
+    lateinit var calendarFrag: HomeFragmentCalendarHolder
 
     @Inject
     lateinit var profileFrag: HomeFragmentProfile

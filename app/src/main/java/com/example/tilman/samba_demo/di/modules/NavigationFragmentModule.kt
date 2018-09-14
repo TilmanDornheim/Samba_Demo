@@ -5,6 +5,10 @@ import com.example.tilman.samba_demo.data.repos.PartyRepository
 import com.example.tilman.samba_demo.di.scopes.NavigationFragmentScope
 import com.example.tilman.samba_demo.mvp.base.BaseFragment
 import com.example.tilman.samba_demo.mvp.home.calendar.*
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.CalendarRecyclerAdapterAttendingLater
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.CalendarRecyclerAdapterAttendingToday
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.CalendarRecyclerAdapterAttendingWeek
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.CalendarViewPagerAdapter
 import com.example.tilman.samba_demo.mvp.home.map.MapContract
 import com.example.tilman.samba_demo.mvp.home.map.MapPresenterImpl
 import com.example.tilman.samba_demo.mvp.home.profile.ProfileContract
@@ -12,7 +16,6 @@ import com.example.tilman.samba_demo.mvp.home.profile.ProfilePresenterImpl
 import dagger.Module
 import dagger.Provides
 import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Named
 
 @Module
@@ -81,25 +84,41 @@ class NavigationFragmentModule(private val fragment: BaseFragment){
 
     @NavigationFragmentScope
     @Provides
-    fun provideCalendarRecyclerAdapterToday(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterToday{
+    fun provideCalendarRecyclerAdapterToday(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterAttendingToday {
 
-        return CalendarRecyclerAdapterToday(presenter)
-
-    }
-
-    @NavigationFragmentScope
-    @Provides
-    fun provideCalendarRecyclerAdapterWeek(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterWeek{
-
-        return CalendarRecyclerAdapterWeek(presenter)
+        return CalendarRecyclerAdapterAttendingToday(presenter)
 
     }
 
     @NavigationFragmentScope
     @Provides
-    fun provideCalendarRecyclerAdapterLater(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterLater{
+    fun provideCalendarRecyclerAdapterWeek(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterAttendingWeek {
 
-        return CalendarRecyclerAdapterLater(presenter)
+        return CalendarRecyclerAdapterAttendingWeek(presenter)
+
+    }
+
+    @NavigationFragmentScope
+    @Provides
+    fun provideCalendarRecyclerAdapterLater(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterAttendingLater {
+
+        return CalendarRecyclerAdapterAttendingLater(presenter)
+
+    }
+
+    @NavigationFragmentScope
+    @Provides
+    fun provideChildFragmentManager(fragment: BaseFragment): android.support.v4.app.FragmentManager{
+
+        return fragment.childFragmentManager
+
+    }
+
+    @NavigationFragmentScope
+    @Provides
+    fun provideViewPagerAdapter(fragmentManager: android.support.v4.app.FragmentManager): CalendarViewPagerAdapter {
+
+        return CalendarViewPagerAdapter(fragmentManager)
 
     }
 

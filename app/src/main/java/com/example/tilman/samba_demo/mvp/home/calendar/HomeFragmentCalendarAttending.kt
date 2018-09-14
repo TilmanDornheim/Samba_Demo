@@ -1,8 +1,6 @@
 package com.example.tilman.samba_demo.mvp.home.calendar
 
-import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -10,25 +8,27 @@ import com.example.tilman.samba_demo.R
 import com.example.tilman.samba_demo.Samba
 import com.example.tilman.samba_demo.mvp.base.BaseFragment
 import com.example.tilman.samba_demo.mvp.home.calendar.CalendarContract.CalendarPresenter
-import kotlinx.android.synthetic.main.fragment_home_calendar.*
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.CalendarRecyclerAdapterAttendingLater
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.CalendarRecyclerAdapterAttendingToday
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.CalendarRecyclerAdapterAttendingWeek
 import kotlinx.android.synthetic.main.fragment_home_calendar_content.*
 import javax.inject.Inject
 import javax.inject.Named
 
-class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView {
+class HomeFragmentCalendarAttending : BaseFragment(), CalendarContract.CalendarView {
 
 
     @Inject
     lateinit var presenter: CalendarPresenter
 
     @Inject
-    lateinit var adapterToday: CalendarRecyclerAdapterToday
+    lateinit var adapterAttendingToday: CalendarRecyclerAdapterAttendingToday
 
     @Inject
-    lateinit var adapterWeek: CalendarRecyclerAdapterWeek
+    lateinit var adapterAttendingWeek: CalendarRecyclerAdapterAttendingWeek
 
     @Inject
-    lateinit var adapterLater: CalendarRecyclerAdapterLater
+    lateinit var adapterAttendingLater: CalendarRecyclerAdapterAttendingLater
 
     @field:[Inject Named("LayoutManagerDay")]
     lateinit var layoutManagerDay: LinearLayoutManager
@@ -53,9 +53,9 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView {
 
     companion object {
 
-        fun newInstance(): HomeFragmentCalendar {
+        fun newInstance(): HomeFragmentCalendarAttending {
 
-            val fragment = HomeFragmentCalendar()
+            val fragment = HomeFragmentCalendarAttending()
 
             //Add arguments as necessary
 
@@ -83,15 +83,15 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView {
         presenter.onAttach()
 
         calendar_recyclerview_today.layoutManager = layoutManagerDay
-        calendar_recyclerview_today.adapter = adapterToday
+        calendar_recyclerview_today.adapter = adapterAttendingToday
         calendar_recyclerview_today.isNestedScrollingEnabled = false
 
         calendar_recyclerview_week.layoutManager = layoutManagerWeek
-        calendar_recyclerview_week.adapter = adapterWeek
+        calendar_recyclerview_week.adapter = adapterAttendingWeek
         calendar_recyclerview_week.isNestedScrollingEnabled = false
 
         calendar_recyclerview_later.layoutManager = layoutManagerLater
-        calendar_recyclerview_later.adapter = adapterLater
+        calendar_recyclerview_later.adapter = adapterAttendingLater
         calendar_recyclerview_later.isNestedScrollingEnabled = false
 
         val animCollapse = AnimationUtils.loadAnimation(context,R.anim.calendar_collapse_arrow_anim)
@@ -252,12 +252,6 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView {
         }
 
 
-        //Tab Layout
-
-        calendar_toolbar_tablayout.addTab(calendar_toolbar_tablayout.newTab().setText("Attending"))
-        calendar_toolbar_tablayout.addTab(calendar_toolbar_tablayout.newTab().setText("Hosting"))
-
-        calendar_toolbar_tablayout.setTabTextColors(ContextCompat.getColor(context!!, R.color.tab_layout_not_selected), ContextCompat.getColor(context!!, R.color.white))
 
 
     }
@@ -275,9 +269,9 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView {
 
     override fun onPartyListUpdated() {
 
-        adapterToday.notifyDataSetChanged()
-        adapterWeek.notifyDataSetChanged()
-        adapterLater.notifyDataSetChanged()
+        adapterAttendingToday.notifyDataSetChanged()
+        adapterAttendingWeek.notifyDataSetChanged()
+        adapterAttendingLater.notifyDataSetChanged()
 
     }
 
@@ -289,7 +283,7 @@ class HomeFragmentCalendar : BaseFragment(), CalendarContract.CalendarView {
 
     override fun getContentView(): Int {
 
-        return R.layout.fragment_home_calendar
+        return R.layout.fragment_home_calendar_content
 
     }
 

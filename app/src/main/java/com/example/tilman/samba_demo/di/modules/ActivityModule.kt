@@ -1,12 +1,11 @@
 package com.example.tilman.samba_demo.di.modules
 
 import android.support.v4.app.FragmentManager
-import android.support.v7.app.AppCompatActivity
 import com.example.tilman.samba_demo.di.scopes.ActivityScope
 import com.example.tilman.samba_demo.mvp.home.MainActivity
 import com.example.tilman.samba_demo.mvp.home.MainActivityContract
 import com.example.tilman.samba_demo.mvp.home.MainActivityPresenter
-import com.example.tilman.samba_demo.mvp.home.calendar.HomeFragmentCalendar
+import com.example.tilman.samba_demo.mvp.home.calendar.HomeFragmentCalendarHolder
 import com.example.tilman.samba_demo.mvp.home.map.HomeFragmentMap
 import com.example.tilman.samba_demo.mvp.home.profile.HomeFragmentProfile
 import dagger.Module
@@ -39,9 +38,9 @@ class ActivityModule(private val activity: MainActivity){
 
     @Provides
     @ActivityScope
-    fun provideCalendarFragment(): HomeFragmentCalendar{
+    fun provideCalendarFragment(): HomeFragmentCalendarHolder{
 
-        return HomeFragmentCalendar.newInstance()
+        return HomeFragmentCalendarHolder.newInstance()
 
     }
 

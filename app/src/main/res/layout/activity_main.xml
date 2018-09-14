@@ -7,30 +7,35 @@
     tools:context=".mvp.home.MainActivity">
 
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
+            android:id="@+id/main_activity_root_view"
+            ></FrameLayout>
 
-
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:id="@+id/main_activity_root_view"
-        ></FrameLayout>
-
-
+    
         <android.support.design.widget.BottomNavigationView
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/main_activity_btm_nav_bar"
             android:layout_gravity="bottom"
-            app:itemBackground="@color/white"
+            app:itemBackground="@android:color/white"
             app:menu="@menu/bottom_navigation_main"
             app:itemIconTint="@drawable/btm_nav_item_state"
             app:itemTextColor="@drawable/btm_nav_item_state"
+            
 
 
             ></android.support.design.widget.BottomNavigationView>
+
+
+
+
+
+
+
+
 
 
 
