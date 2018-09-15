@@ -6,10 +6,13 @@ import com.example.tilman.samba_demo.data.repos.PartyRepository
 import com.example.tilman.samba_demo.di.scopes.NavigationFragmentScope
 import com.example.tilman.samba_demo.mvp.base.BaseFragment
 import com.example.tilman.samba_demo.mvp.home.calendar.*
-import com.example.tilman.samba_demo.mvp.home.calendar.adapters.CalendarRecyclerAdapterAttendingLater
-import com.example.tilman.samba_demo.mvp.home.calendar.adapters.CalendarRecyclerAdapterAttendingToday
-import com.example.tilman.samba_demo.mvp.home.calendar.adapters.CalendarRecyclerAdapterAttendingWeek
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.attending.CalendarRecyclerAdapterAttendingLater
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.attending.CalendarRecyclerAdapterAttendingToday
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.attending.CalendarRecyclerAdapterAttendingWeek
 import com.example.tilman.samba_demo.mvp.home.calendar.adapters.CalendarViewPagerAdapter
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.hosting.CalendarRecyclerAdapterHostingLater
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.hosting.CalendarRecyclerAdapterHostingToday
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.hosting.CalendarRecyclerAdapterHostingWeek
 import com.example.tilman.samba_demo.mvp.home.map.MapContract
 import com.example.tilman.samba_demo.mvp.home.map.MapPresenterImpl
 import com.example.tilman.samba_demo.mvp.home.profile.ProfileContract
@@ -105,6 +108,30 @@ class NavigationFragmentModule(private val fragment: BaseFragment){
     fun provideCalendarRecyclerAdapterLater(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterAttendingLater {
 
         return CalendarRecyclerAdapterAttendingLater(presenter)
+
+    }
+
+    @NavigationFragmentScope
+    @Provides
+    fun provideCalendarRecyclerHostingAdapaterToday(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterHostingToday{
+
+        return CalendarRecyclerAdapterHostingToday(presenter)
+
+    }
+
+    @NavigationFragmentScope
+    @Provides
+    fun provideCalendarRecyclerHostingAdapaterWeek(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterHostingWeek {
+
+        return CalendarRecyclerAdapterHostingWeek(presenter)
+
+    }
+
+    @NavigationFragmentScope
+    @Provides
+    fun provideCalendarRecyclerHostingAdapaterLater(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterHostingLater{
+
+        return CalendarRecyclerAdapterHostingLater(presenter)
 
     }
 

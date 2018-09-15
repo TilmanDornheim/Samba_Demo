@@ -1,13 +1,11 @@
 package com.example.tilman.samba_demo.mvp.home.calendar
 
-import android.util.Log
 import com.example.tilman.samba_demo.data.models.Party
 import com.example.tilman.samba_demo.data.repos.PartyRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarView?
@@ -15,12 +13,15 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
                             , private val dateFormat: SimpleDateFormat) : CalendarContract.CalendarPresenter {
 
 
-    private var partyList = ArrayList<Party>()
+    private var partyAttendingList = ArrayList<Party>()
+
+    private var partyHostingList = ArrayList<Party>()
 
 
     override fun onAttach() {
 
-        partyList.clear()
+        partyAttendingList.clear()
+        partyHostingList.clear()
 
         loadParties()
 
@@ -28,19 +29,32 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
 
     fun loadParties() {
 
-        partyRepository.getParties()
+        partyRepository.getAttendingParties()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::handlePartyResponse, this::handleError)
+
+        partyRepository.getHostingParties()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::handleHostingResponse, this::handleError)
     }
 
 
     fun handlePartyResponse(parties: ArrayList<Party>) {
 
-        partyList = parties
+        partyAttendingList = parties
 
         calendarView?.onPartyListUpdated()
 
+
+    }
+
+    fun handleHostingResponse(parties: ArrayList<Party>){
+
+        partyHostingList = parties
+
+        calendarView?.onPartyListUpdated()
 
     }
 
@@ -51,7 +65,7 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
 
     override fun showParties(): ArrayList<Party> {
 
-        return partyList
+        return partyAttendingList
 
     }
 
@@ -63,7 +77,7 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
 
         var dayList = ArrayList<Party>()
 
-        partyList.forEach {
+        partyAttendingList.forEach {
 
 
             val cal = Calendar.getInstance()
@@ -95,7 +109,7 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
 
         var weekList = ArrayList<Party>()
 
-        partyList.forEach {
+        partyAttendingList.forEach {
 
 
             val cal = Calendar.getInstance()
@@ -125,7 +139,7 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
 
         val laterList = ArrayList<Party>()
 
-        partyList.forEach {
+        partyAttendingList.forEach {
 
 
             val cal = Calendar.getInstance()
@@ -144,6 +158,86 @@ class CalendarPresenterImpl(private var calendarView: CalendarContract.CalendarV
         return laterList
 
     }
+
+
+    override fun showHostingToday(): ArrayList<Party> {
+
+        val calNow = Calendar.getInstance()
+
+        val dayNow = calNow.get(Calendar.DAY_OF_YEAR)
+
+        val todayList = ArrayList<Party>()
+
+        partyHostingList.forEach {
+
+            val cal = Calendar.getInstance()
+
+            cal.time = it.date
+
+            if(dayNow == cal.get(Calendar.DAY_OF_YEAR)){
+
+                todayList.add(it)
+
+            }
+
+        }
+
+        return todayList
+
+    }
+
+    override fun showHostingWeek(): ArrayList<Party> {
+
+
+        val calNow = Calendar.getInstance()
+
+        val weekNow = calNow.get(Calendar.WEEK_OF_YEAR)
+
+        val weekList = ArrayList<Party>()
+
+        partyHostingList.forEach {
+
+            val cal = Calendar.getInstance()
+
+            cal.time = it.date
+
+            if(!showHostingToday().contains(it) && weekNow == cal.get(Calendar.WEEK_OF_YEAR)){
+
+                weekList.add(it)
+
+            }
+
+        }
+
+        return weekList
+
+    }
+
+    override fun showHostingLater(): ArrayList<Party> {
+
+        val calNow = Calendar.getInstance()
+
+        val laterList = ArrayList<Party>()
+
+        partyHostingList.forEach {
+
+            val cal = Calendar.getInstance()
+
+            cal.time = it.date
+
+            if(!showHostingToday().contains(it) && !showHostingWeek().contains(it) && cal.time.after(calNow.time)){
+
+                laterList.add(it)
+
+            }
+
+        }
+
+        return laterList
+
+    }
+
+
 
     override fun onDetach() {
 

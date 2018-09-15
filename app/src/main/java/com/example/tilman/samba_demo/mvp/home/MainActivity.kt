@@ -93,8 +93,9 @@ class MainActivity : AppCompatActivity(), View {
 
         main_activity_btm_nav_bar.setOnNavigationItemReselectedListener { item: MenuItem ->
 
-            //TODO handle reselection logic
-
+            /**TODO|  Handle reselection logic. Need to get currently active tabLayout fragment in respective btm_nav_bar category
+            *  TODO|  and invoke its reselection method. May require holder fragment to have its own presenter(Nav. logic vs Business logic)
+            */
             when (item.itemId) {
 
                 R.id.btm_nav_bar_calendar -> true

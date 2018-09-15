@@ -11,24 +11,27 @@ import com.example.tilman.samba_demo.mvp.home.calendar.CalendarContract.Calendar
 import com.example.tilman.samba_demo.mvp.home.calendar.adapters.attending.CalendarRecyclerAdapterAttendingLater
 import com.example.tilman.samba_demo.mvp.home.calendar.adapters.attending.CalendarRecyclerAdapterAttendingToday
 import com.example.tilman.samba_demo.mvp.home.calendar.adapters.attending.CalendarRecyclerAdapterAttendingWeek
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.hosting.CalendarRecyclerAdapterHostingLater
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.hosting.CalendarRecyclerAdapterHostingToday
+import com.example.tilman.samba_demo.mvp.home.calendar.adapters.hosting.CalendarRecyclerAdapterHostingWeek
 import kotlinx.android.synthetic.main.fragment_home_calendar_attending.*
 import javax.inject.Inject
 import javax.inject.Named
 
-class HomeFragmentCalendarAttending : BaseFragment(), CalendarContract.CalendarView {
+class HomeFragmentCalendarHosting : BaseFragment(), CalendarContract.CalendarView {
 
 
     @Inject
     lateinit var presenter: CalendarPresenter
 
     @Inject
-    lateinit var adapterAttendingToday: CalendarRecyclerAdapterAttendingToday
+    lateinit var adapterHostingToday: CalendarRecyclerAdapterHostingToday
 
     @Inject
-    lateinit var adapterAttendingWeek: CalendarRecyclerAdapterAttendingWeek
+    lateinit var adapterHostingWeek: CalendarRecyclerAdapterHostingWeek
 
     @Inject
-    lateinit var adapterAttendingLater: CalendarRecyclerAdapterAttendingLater
+    lateinit var adapterHostingLater: CalendarRecyclerAdapterHostingLater
 
     @field:[Inject Named("LayoutManagerDay")]
     lateinit var layoutManagerDay: LinearLayoutManager
@@ -51,9 +54,9 @@ class HomeFragmentCalendarAttending : BaseFragment(), CalendarContract.CalendarV
 
     companion object {
 
-        fun newInstance(): HomeFragmentCalendarAttending {
+        fun newInstance(): HomeFragmentCalendarHosting {
 
-            val fragment = HomeFragmentCalendarAttending()
+            val fragment = HomeFragmentCalendarHosting()
 
             //Add arguments as necessary
 
@@ -81,15 +84,15 @@ class HomeFragmentCalendarAttending : BaseFragment(), CalendarContract.CalendarV
         presenter.onAttach()
 
         calendar_recyclerview_today.layoutManager = layoutManagerDay
-        calendar_recyclerview_today.adapter = adapterAttendingToday
+        calendar_recyclerview_today.adapter = adapterHostingToday
         calendar_recyclerview_today.isNestedScrollingEnabled = false
 
         calendar_recyclerview_week.layoutManager = layoutManagerWeek
-        calendar_recyclerview_week.adapter = adapterAttendingWeek
+        calendar_recyclerview_week.adapter = adapterHostingWeek
         calendar_recyclerview_week.isNestedScrollingEnabled = false
 
         calendar_recyclerview_later.layoutManager = layoutManagerLater
-        calendar_recyclerview_later.adapter = adapterAttendingLater
+        calendar_recyclerview_later.adapter = adapterHostingLater
         calendar_recyclerview_later.isNestedScrollingEnabled = false
 
         val animCollapse = AnimationUtils.loadAnimation(context,R.anim.calendar_collapse_arrow_anim)
@@ -267,9 +270,9 @@ class HomeFragmentCalendarAttending : BaseFragment(), CalendarContract.CalendarV
 
     override fun onPartyListUpdated() {
 
-        adapterAttendingToday.notifyDataSetChanged()
-        adapterAttendingWeek.notifyDataSetChanged()
-        adapterAttendingLater.notifyDataSetChanged()
+        adapterHostingToday.notifyDataSetChanged()
+        adapterHostingWeek.notifyDataSetChanged()
+        adapterHostingLater.notifyDataSetChanged()
 
     }
 

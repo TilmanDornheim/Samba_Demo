@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.example.tilman.samba_demo.mvp.home.calendar.HomeFragmentCalendarAttending
+import com.example.tilman.samba_demo.mvp.home.calendar.HomeFragmentCalendarHosting
 import javax.inject.Inject
 
 class CalendarViewPagerAdapter @Inject constructor(fragmentManager: FragmentManager): FragmentPagerAdapter(fragmentManager){
@@ -15,7 +16,7 @@ class CalendarViewPagerAdapter @Inject constructor(fragmentManager: FragmentMana
 
             0 -> HomeFragmentCalendarAttending.newInstance()
 
-            1 -> HomeFragmentCalendarAttending.newInstance()
+            1 -> HomeFragmentCalendarHosting.newInstance()
 
             else -> HomeFragmentCalendarAttending.newInstance()
 

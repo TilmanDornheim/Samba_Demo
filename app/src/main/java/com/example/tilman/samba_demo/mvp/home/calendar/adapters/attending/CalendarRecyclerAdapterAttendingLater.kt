@@ -1,4 +1,4 @@
-package com.example.tilman.samba_demo.mvp.home.calendar.adapters
+package com.example.tilman.samba_demo.mvp.home.calendar.adapters.attending
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
