@@ -113,7 +113,7 @@ class NavigationFragmentModule(private val fragment: BaseFragment){
 
     @NavigationFragmentScope
     @Provides
-    fun provideCalendarRecyclerHostingAdapaterToday(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterHostingToday{
+    fun provideCalendarRecyclerHostingAdapterToday(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterHostingToday{
 
         return CalendarRecyclerAdapterHostingToday(presenter)
 
@@ -121,7 +121,7 @@ class NavigationFragmentModule(private val fragment: BaseFragment){
 
     @NavigationFragmentScope
     @Provides
-    fun provideCalendarRecyclerHostingAdapaterWeek(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterHostingWeek {
+    fun provideCalendarRecyclerHostingAdapterWeek(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterHostingWeek {
 
         return CalendarRecyclerAdapterHostingWeek(presenter)
 
@@ -129,7 +129,7 @@ class NavigationFragmentModule(private val fragment: BaseFragment){
 
     @NavigationFragmentScope
     @Provides
-    fun provideCalendarRecyclerHostingAdapaterLater(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterHostingLater{
+    fun provideCalendarRecyclerHostingAdapterLater(presenter: CalendarContract.CalendarPresenter): CalendarRecyclerAdapterHostingLater{
 
         return CalendarRecyclerAdapterHostingLater(presenter)
 
