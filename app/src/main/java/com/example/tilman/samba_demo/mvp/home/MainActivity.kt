@@ -98,7 +98,15 @@ class MainActivity : AppCompatActivity(), View {
             */
             when (item.itemId) {
 
-                R.id.btm_nav_bar_calendar -> true
+                R.id.btm_nav_bar_calendar -> {
+
+                    //TODO Wrap in if statement for current fablayout state and reload frag1 in case it is selected
+
+                    val calendarFrag = fragmentManager.findFragmentByTag("CalendarFragment") as HomeFragmentCalendarHolder
+
+                    calendarFrag.reselected()
+
+                }
 
                 R.id.btm_nav_bar_profile -> true
 

@@ -69,5 +69,11 @@ class HomeFragmentCalendarHolder: BaseFragment(){
 
     }
 
+    fun reselected(){
+
+        calendar_toolbar_tablayout.getTabAt(0)?.select()
+
+    }
+
 
 }
